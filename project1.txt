@@ -1,3 +1,0 @@
-bt1|Button|,text="ok",command=self.bt1_handler|a="hello world.....~" \n        self.txt1.insert("1.0",a)
-lbl1|Label|,text="hello world...."
-txt1|Text
