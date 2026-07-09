@@ -1,3 +1,1 @@
-mini r compiler
-
-must install pack "radare2"
+unpuck files and pythons install
