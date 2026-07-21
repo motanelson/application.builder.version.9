@@ -1,7 +1,11 @@
 import os
 import copy
+import zlib
+from tkinter import filedialog
+
 print("\033c\033[47;30m\ngive me the .pack1 pack file ? \n")
-a=input().strip()
+a=filedialog.askopenfile(title="give me the .pack1 pack file ? ",defaultextension="*.video")
+a=a.name
 f1=open(a,"rb")
 f=f1.read()
 f1.close()
@@ -9,7 +13,7 @@ ff=f.split(b"\x01\x00\x05\x04\x03\x02")
 if len(ff)< 2:
     printf("this is not a pack file to 1 file")
     exit(1)
-files=copy.copy(ff[0].decode())
+files=copy.copy(zlib.decompress(ff[0]).decode())
 fff=files.split("\n")
 names=fff[0]
 try:
@@ -22,7 +26,7 @@ for d in fff:
     if counter!=0 and d.strip()!="":
         
         f1=open(names+"/"+d,"bw")
-        f1.write(ff[counter-1])
+        f1.write(zlib.decompress(ff[counter-1]))
         f1.close()
     counter=counter+1
 
